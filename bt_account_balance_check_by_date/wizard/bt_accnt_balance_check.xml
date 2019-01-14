@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <data>
+        <record id="account_balance_check_date_form" model="ir.ui.view">
+            <field name="name">bt.account.balance.check.form</field>
+            <field name="model">bt.account.balance.check</field>
+            <field name="arch" type="xml">
+            <form string="" >
+            	<group>    
+	                <group>
+	                	<field name="check_bal" invisible="1"/>
+	                    <field name="account_id" attrs="{'readonly':[('check_bal','=',True)]}"/>
+	                    <field name="balance" readonly="1" attrs="{'invisible': [('check_bal','=',False)]}"/>
+	                </group>
+	                <group>
+	                	<field name="date" attrs="{'invisible': [('check_bal','=',True)]}"/>
+	                </group>
+	            </group>
+                <footer>
+                    <button name="check_balance" string="Check Balance" type="object" class="oe_highlight" attrs="{'invisible': [('check_bal','=',True)]}"/>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                   
+                </footer>
+            </form>
+            </field>
+        </record>
+
+        <record id="action_account_balance_check_date_form" model="ir.actions.act_window">
+            <field name="name">Account Balance Check</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">bt.account.balance.check</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+            name="Account Balance Check"
+            parent="account.menu_finance_entries"
+            action="action_account_balance_check_date_form"
+            id="menu_action_balance_check" sequence="36"
+            />
+     </data>
+ </odoo>
